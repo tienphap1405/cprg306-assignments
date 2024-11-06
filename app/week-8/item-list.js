@@ -1,24 +1,25 @@
 "use client";
 
 import Item from "./item";
-import itemJson from "./items.json"
 import { useState } from "react";
-export default function ItemList(){
+
+
+export default function ItemList({ItemData, onItemSelect}){
   const [sortBy, setSortBy] = useState("name");
-  let itemlist = [...itemJson];
+  
 
   if (sortBy === "category") {
-    itemlist.sort((a, b) => a.category.localeCompare(b.category));
+    ItemData.sort((a, b) => a.category.localeCompare(b.category));
   } 
   else if (sortBy === "name") {
-    itemlist.sort((a, b) => a.name.localeCompare(b.name));
+    ItemData.sort((a, b) => a.name.localeCompare(b.name));
   }
     return(
         <main>
             <div className="flex flex-row m-2">
                 <p className="m-2 text-black bg-white max-w-sm border-black border-2">Sort By:</p>
                 <button
-                    className={`mr-2 p-2 border-2 border-black rounded-lg w-36 transition-colors duration-300
+                    className={`mr-2 p-2 border-2 border-black rounded-lg w-36
                         ${sortBy === "category" ? "bg-sky-700 text-white" : "bg-white text-black"} 
                         hover:bg-sky-700 hover:text-white`}
                     onClick={() => setSortBy("category")}
@@ -26,7 +27,7 @@ export default function ItemList(){
                     Category
                 </button>
                 <button
-                    className={`mr-2 p-2 border-2 border-black rounded-lg w-36 transition-colors duration-300
+                    className={`mr-2 p-2 border-2 border-black rounded-lg w-36
                         ${sortBy === "name" ? "bg-sky-700 text-white" : "bg-white text-black"} 
                         hover:bg-sky-700 hover:text-white`}
                     onClick={() => setSortBy("name")}
@@ -37,8 +38,9 @@ export default function ItemList(){
 
             <div>
                 <ul>
-                    {itemlist.map( (item) => (
+                    {ItemData.map( (item) => (
                         <Item
+                            onSelect={onItemSelect}
                             id = {item.id}
                             name = {item.name}
                             quantity = {item.quantity}

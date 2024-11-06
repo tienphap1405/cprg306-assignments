@@ -34,3 +34,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+app/week-6/item-list.js

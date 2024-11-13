@@ -17,9 +17,11 @@ export default function MealIdeas({ingredient}){
     }, [ingredient])
 
     return(
-        <div>
-            <h1>Meal Ideas</h1>
-            <h2>Here are some meal ideas using bread:</h2>
+        <div className="m-2 text-black bg-white max-w-sm border-black border-2">
+            <div className="border-white border-2">
+                <h1 className="bg-black text-white">Meal Ideas</h1>
+                <h2 className="bg-black text-white">Here are some meal ideas using {ingredient}:</h2>
+            </div>
             <ul>
                 {meals.length === 0 && <li>No meal found for {ingredient}</li>}
                 {meals.length > 0 &&
